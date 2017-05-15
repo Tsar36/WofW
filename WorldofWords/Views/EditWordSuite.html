@@ -1,0 +1,144 @@
+﻿<div ng-include="'Views/MessageModal.html'"></div>
+<div class="container">
+    <div class="row text-center">
+        <h2><strong>Edit WordSuite</strong></h2>
+    </div>
+    <div ng-show="wordSuite">
+        <div class="row text-center">
+            <h3>
+                Basic Information
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group left-block" ng-class="{'has-error': !isEnteredName}" ng-init="isEnteredName = true">
+                    <span class="input-group-addon"><strong>Name:</strong></span>
+                    <input type="text" class="form-control" ng-model="wordSuite.Name">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group left-block"
+                     ng-class="{'has-error': !isEnteredThreshold}"
+                     ng-init="isEnteredThreshold = true"
+                     data-tooltip="How many times student should give correct answer in quizzes, so the WordTranslation will be considered learned">
+                    <span class="input-group-addon"><strong>Threshold:</strong></span>
+                    <input type="number" min="1" class="form-control" ng-model="wordSuite.Threshold">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group left-block"
+                     ng-class="{'has-error': !isEnteredQuizResponseTime}"
+                     ng-init="isEnteredQuizResponseTime = true"
+                     data-tooltip="Hom much time (in seconds) student has to give answer to one WordTranslation in quiz">
+                    <span class="input-group-addon"><strong>Quiz Response Time:</strong></span>
+                    <input type="number" min="1" class="form-control" ng-model="wordSuite.QuizResponseTime">
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row text-center">
+            <h3>
+                Word Translations
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text"
+                           ng-model="selectedWordTranslation"
+                           data-typeahead-min-length="2"
+                           data-typeahead-wait-ms="400"
+                           data-typeahead="wt as wt.OriginalWord + ' — ' + wt.TranslationWord for wt in searchWordTranslations($viewValue)"
+                           class="form-control" ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{language.ShortName}}" }'
+                           placeholder="Search WordTranslations">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-block" ng-click="addWordTranslationToWordSuite()">
+                            Add
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button class="form-control btn-default btn-block" ng-click="createWordTranslation()">
+                    Create WordTranslation
+                </button>
+            </div>
+            <div class="col-md-4">
+                <div ng-include="'Views/ImportWordTranslations.html'"></div>
+                <button class="form-control btn-default btn-block" ng-click="openImportModal()">
+                    Import WordTranslations
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="form-group col-xs-12 col-md-6 col-lg-4" ng-repeat="wt in existingWordTranslations">
+                <div class="form-inline">
+                    <div class="input-group">
+                        <div class="input-group-addon left-block"><strong>{{wt.OriginalWord}} — {{wt.TranslationWord}}</strong></div>
+                        <button class="input-group-addon" ng-click="removeExistingWordTranslation($index)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-md-6 col-lg-4" ng-repeat="wt in newWordTranslations">
+                <div class="form-inline">
+                    <div class="input-group">
+                        <div class="input-group-addon left-block"><strong>{{wt.OriginalWord}} — {{wt.TranslationWord}}</strong></div>
+                        <button class="input-group-addon" ng-click="removeNewWordTranslation($index)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div align="center">
+                <label class="control-label" for="quizzes">Prohibited Quizzes</label>
+                <div isteven-multi-select
+                     id="quizzes"
+                     input-model="allQuizzes"
+                     output-model="prohibitedQuizzesToEdit"
+                     button-label="Name"
+                     item-label="Name"
+                     tick-property="isSelected">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center" ng-show="suggestionTranslationsToShow.length">
+        <h3>Suggestions</h3><br>Students add these translations to their word suites
+    </div>
+    <div class="row" ng-show="suggestionTranslationsToShow.length">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <table class="table" ng-show="true">
+                <thead>
+                    <tr>
+                        <th>Word Translation</th>
+                        <th>Frequency</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in suggestionTranslationsToShow">
+                        <td>{{item.OriginalWord}} — {{item.TranslationWord}}</td>
+                        <td>{{item.Freq}}</td>
+                        <td><button class="btn btn-default btn-block" ng-click="AddWordTranslation(item)">Add</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <hr />
+    <footer class="text-center">
+        <button class="btn btn-primary btn-lg"
+                ng-click="saveWordSuite()"
+                data-tooltip="Fill all required fields and add Word Translations"
+                data-tooltip-enable="!(wordSuite.Name && wordSuite.Threshold && wordSuite.QuizResponseTime) || !(newWordTranslations.length || existingWordTranslations.length)">
+            Save WordSuite
+        </button>
+    </footer>
+</div>

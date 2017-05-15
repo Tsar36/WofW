@@ -1,0 +1,64 @@
+﻿<div class="container">
+    <div class="row">
+        <ul class="nav nav-pills">
+            <li role="navigation"><a href="#/Groups">Groups</a></li>
+            <li role="navigation"><a href="#/Groups/{{group.Id}}">/</a></li>
+            <li role="navigation"><a href="#/Groups/{{group.Id}}">{{group.Name}}</a></li>
+            <li role="navigation"><a href="#/Groups/{{group.Id}}/{{userId}}">/</a></li>
+            <li role="navigation"><a href="#/Groups/{{group.Id}}/{{userId}}">{{userName}}</a></li>
+        </ul>
+    </div>
+    <div ng-hide="error">
+        <div class="row">
+            <h3 class="col-md-4 text-left blod-text">Word Suite: {{ wordSuiteName }}</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4 text-center blod-text">Default Word Suite</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4 text-center blod-text">Words added by {{ userName }}</div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <div class="bin text-center"
+                     ui-on-drop="onDrop($event, $data, teacherWordTranslations)" droppable>
+                    <div class="form-control-static"
+                         ng-repeat="item in teacherWordTranslations"
+                         ng-show="!item.IsStudentWord">
+                        {{item.OriginalWord}} — {{item.TranslationWord}}
+                    </div>
+                    <div class="item form-control"
+                         ng-repeat="item in teacherWordTranslations"
+                         ui-draggable="{{item.IsStudentWord}}" drag="item" ng-show="item.IsStudentWord"
+                         on-drop-success="dropSuccessHandler($event, $index, teacherWordTranslations)">
+                        {{item.OriginalWord}} — {{item.TranslationWord}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <div class="bin text-center" ui-on-drop="onDrop($event,$data,
+                 studentWordTranslations)">
+                    <div ng-hide="studentWordTranslations.length">No added words that don't exist in default word suite </div>
+                    <div class="item form-control"
+                         ng-repeat="item in studentWordTranslations"
+                         ui-draggable="true" drag="item"
+                         on-drop-success="dropSuccessHandler($event, $index, studentWordTranslations)">
+                        {{item.OriginalWord}} — {{item.TranslationWord}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-danger" ng-show="error">
+        When loading the data an error occured. Refresh the page.
+    </div>
+    <footer class="text-center">
+        <button class="btn btn-primary btn-lg"
+                ng-click="saveWordSuite()">
+            Save WordSuite
+        </button>
+    </footer>
+</div>

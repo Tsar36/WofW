@@ -1,0 +1,160 @@
+﻿<div class="modal-header bg-primary" align="center">
+    <button class="modal-title close" ng-click="cancel()">x</button>
+    <h3 class="modal-title">Add new Word</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" role="form">
+        <div class="row">
+
+            <div class="col-sm-11">
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="word">Word</label>
+                    <div class="input-group">
+                        <input id="word" type="text"
+                               class="form-control"
+                               ng-model="selectedWord"
+                               data-typeahead="word as word.Value for word in searchWords($viewValue)"
+                               data-typeahead-no-results="not found"
+                               data-typeahead-min-length="0"
+                               data-typeahead-wait-ms="400" ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }'
+                               placeholder="Search word" required autofocus />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="parts">Part Of Speech</label>
+                    <div class="input-group">
+                        <select id="parts" ng-disabled="isPartOfSpeechDisabled" class="form-control" ng-model="selectedPartOfSpeech" ng-options="opt.Id as opt.Name for opt in partsOfSpeech"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="description">Description</label>
+                    <div class="input-group">
+                        <input id="description" class="form-control" ng-model='descriptionOfWordToAdd' ng-readonly="isDescrFieldDisabled"
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }' />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="transcription">Transcription</label>
+                    <div ng-if="languageIsOn" class="input-group">
+                        <input class="form-control" ng-model='transcriptionOfWordToAdd' ng-readonly="isTranscrFieldDisabled"
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }' />
+                    </div>
+                </div>
+                <div class="form-group" align="center">
+                    <label class="control-label col-sm-3">Picture</label>
+                    <div ng-controller="PictureController">
+                        <div ng-hide="isPicture">
+                            <div ng-hide="isPictureSelected">
+                                <div class="row">
+                                    <br />
+                                    <input type='file' accept="image/*" onchange="angular.element(this).scope().setFiles(this)" />
+                                </div>
+                                <div align="center" id="dropbox" style="width:80%; height:200px; background-color:azure; margin: auto; text-align: center; border: 2px solid #DDD;"><span>{{dropText}}</span></div>
+                            </div>
+                            <div align="center" ng-show="isPictureSelected">
+                                <h4 class="col-sm-2">Preview:</h4>
+                                <div style="margin-left: 13%" class="thumbnail col-sm-12 col-md-10">
+                                    <img src="{{preview}}" />
+                                    <div align="center" class="input-group-btn">
+                                        <input class="btn btn-danger" type="button" ng-click="cancel()" value="Cancel" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="translation">Translation</label>
+                    <div class="input-group">
+                        <input id="translation" type="text"
+                               class="form-control"
+                               ng-model="selectedTranslation"
+                               ng-readonly="isTranFieldDisabled"
+                               data-typeahead="translation as translation.Value for translation in searchTranslations($viewValue)"
+                               data-typeahead-min-length="2"
+                               data-typeahead-wait-ms="400"
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{translationLanguage.ShortName}}" }'
+                               placeholder="Search translation" required />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default no-margin-right" type="button" ng-click="addTran()">
+                                <img src="http://thegreatcloset.com/wp-content/uploads/2015/04/add-to-cart-light.png">
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="row" style="margin: -5px 0px 9px 0px" align="center">
+                    <showwords data="synonymsModel.translations" remove="deleteTranslation(index)" withid="true">
+                    </showwords>
+                </div>    
+     <div class="form-group">
+        <label class="control-label col-sm-3" for="synonym">Synonyms</label>
+         <div  class="input-group">
+             <input class="form-control" ng-model='selectedSyn'
+                    ng-readonly="isSynFieldDisabled"
+                    data-typeahead="synonym as synonym.Value for synonym in searchSynonyms($viewValue)"
+                    data-typeahead-no-results="not found"
+                    data-typeahead-min-length="0"
+                    data-typeahead-wait-ms="400"
+                    ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }'
+                    placeholder="Search Synonym" required autofocus />
+
+             <span class="input-group-btn">
+                 <button class="btn btn-default no-margin-right" type="button" ng-click="addSyn()">
+                     <img src="http://thegreatcloset.com/wp-content/uploads/2015/04/add-to-cart-light.png">
+                 </button>
+             </span>
+         </div>
+    </div>
+                <div class="row" style="margin: -5px 0px 9px 0px" align="center">
+                    <showwords data="synonymsModel.synonyms" remove="deleteSynonym(index)" withid="true">
+                    </showwords>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="tag">Tags</label>
+                    <div class="input-group">
+                        <input class="form-control" ng-model='selectedTag' ng-readonly="isTagFieldDisabled"
+                               data-typeahead="tag as tag.Value for tag in searchTags($viewValue)"
+                               data-typeahead-no-results="not found"
+                               data-typeahead-min-length="0"
+                               data-typeahead-wait-ms="400"
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }'
+                               placeholder="Search Tag" required autofocus />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default no-margin-right" type="button" ng-click="addTag()">
+                                <img src="http://thegreatcloset.com/wp-content/uploads/2015/04/add-to-cart-light.png">
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="row" style="margin: -5px 0px 9px 0px" align="center">
+                    <showwords data="synonymsModel.tags" remove="deleteTag(index)" withid="true">
+                    </showwords>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="records">Pronunciation</label>
+                    <div class="input-group" style="width: 75%">
+                        <recorder input="record"></recorder>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="comment">Comment</label>
+                    <div class="input-group">
+                        <input class="form-control" ng-model='commentOfWordToAdd' ng-readonly="isCommentFieldDisabled"
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }' />
+                    </div>
+                </div>
+</div>
+            <div class="col-sm-1"></div>
+        </div>
+    </form>
+    
+</div>
+<div class="modal-footer">
+    <span class="input-group-btn">
+        <button class="btn btn-primary" ng-click="ManipulateData()" ng-disabled="isButtonDisabled">
+            Add word
+        </button>
+    </span>
+</div>

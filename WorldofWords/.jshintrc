@@ -1,0 +1,15 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "curly": true,
+  "esnext": true,
+  "latedef": true,
+  "node": true,
+  "strict": true,
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "angular": false,
+	"app" : false
+  }
+}

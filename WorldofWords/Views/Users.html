@@ -1,0 +1,69 @@
+﻿<div class="row" align="center">
+    <h2 class="text-center">Users</h2>
+    <div class="btn-group">
+        <label class="btn btn-primary" ng-model="tempRole" ng-change="roleChanged()" btn-radio="0">All</label>
+        <label class="btn btn-primary" ng-model="tempRole" ng-change="roleChanged()" btn-radio="ID_OF_ADMIN_ROLE">Admins</label>
+        <label class="btn btn-primary" ng-model="tempRole" ng-change="roleChanged()" btn-radio="ID_OF_TEACHER_ROLE">Teachers</label>
+        <label class="btn btn-primary" ng-model="tempRole" ng-change="roleChanged()" btn-radio="ID_OF_STUDENT_ROLE">Students</label>
+    </div>
+    <input type="text"
+           ng-model="valueToSearch"
+           ng-change="search()"
+           placeholder="Search users" />
+    <form>
+        <table class="table table-striped width-half">
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Email
+                </td>
+                <td>
+                    Admin Role
+                </td>
+                <td>
+                    TeacherRole
+                </td>
+                <td>
+                    StudentRole
+                </td>
+                <td>
+                    Click to edit
+                </td>
+            </tr>
+            <tr ng-repeat="user in UserList">
+                <td>
+                    {{user.Name}}
+                </td>
+                <td>
+                    {{user.Email}}
+                </td>
+                <td>
+                    <input type='checkbox' ng-disabled='!user.isBeingEdited' ng-model='user.isAdmin' />
+                </td>
+                <td>
+                    <input type='checkbox' ng-disabled='!user.isBeingEdited' ng-model='user.isTeacher' />
+                </td>
+                <td>
+                    <input type='checkbox' ng-disabled='!user.isBeingEdited' ng-model='user.isStudent' />
+                </td>
+                <td>
+                    <span class="glyphicon glyphicon-pencil" ng-hide='user.isBeingEdited' ng-click="addToListOfUsersWhichAreBeingEdited($index)" style="cursor: pointer"></span>
+                    <span class="glyphicon glyphicon-ok" ng-show='user.isBeingEdited' ng-click="removedFromListOfUsersWhichAreBeingChanged($index)" style="cursor: pointer"></span>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div class="row" align="center" ng-show="amountOfUsersByTempRole > USERS_ON_PAGE">
+        <pagination boundary-links="true"
+                    total-items="amountOfUsersByTempRole"
+                    items-per-page="USERS_ON_PAGE"
+                    max-size="5"
+                    ng-model="selectedPage"
+                    ng-change="changeDataToShow()"
+                    class="pagination-sm"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+        </pagination>
+    </div>
+</div>

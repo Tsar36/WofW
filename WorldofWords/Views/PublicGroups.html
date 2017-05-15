@@ -1,0 +1,62 @@
+﻿<div ng-include="'Views/ConfirmModal.html'"></div>
+<div ng-include="'Views/MessageModal.html'"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Public Groups</h2>
+        </div>
+    </div>
+    <div class="row" ng-show="groups.length">
+        <div class="col-md-2">
+            <input class="form-control" placeholder="Search by name" ng-change="showGroups()" ng-model="searchName" />
+        </div>
+        <div class="col-md-offset-5 col-md-5 text-right">
+            <div class="form-inline margins-vertikal-sm">
+                <div class="input-group form-group">
+                    <span class="input-group-addon"><strong>Order by:</strong></span>
+                    <select class="form-control input-addon-sm" ng-model="orderBy" ng-change="showGroups()" ng-options="s for s in ['Date', 'Name']"></select>
+                </div>
+                <div class="input-group form-group">
+                    <span class="input-group-addon"><strong>Items per page:</strong></span>
+                    <input type="number" min="1" class="form-control input-addon-sm" ng-model="itemsPerPage" ng-change="showGroups()">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="groups.length" class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr class="blod-text text-center">
+                    <td class="text-left">Name</td>
+                    <td class="text-left">Course</td>
+                    <td class="text-left">Teacher</td>
+                    <td>Request</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="group in groupsToShow" class="text-center">
+                    <td class="text-left"><h4>{{group.Name}}</h4></td>
+                    <td class="text-left"><h4>{{ group.CourseName }}</h4></td>
+                    <td class="text-left"><h4>{{ group.OwnerName }}</h4></td>
+                    <td class="width-glyphicons">
+                        <button class="btn btn-default" ng-click="sendRequest(group.Id)">
+                            <span class="glyphicon glyphicon-share"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row text-center">
+        <pagination ng-show="groupsToShowCount > itemsPerPage"
+                    boundary-links="true"
+                    total-items="groupsToShowCount"
+                    items-per-page="itemsPerPage"
+                    max-size="10"
+                    ng-model="currentPage"
+                    ng-change="showGroups()"
+                    class="pagination-sm"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+        </pagination>
+    </div>
+</div>

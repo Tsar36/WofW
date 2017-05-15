@@ -1,0 +1,40 @@
+﻿<div class="container">
+    <form role="form" class="form-horizontal">
+        <br />
+        <div class="row">
+            <div class="col-sm-5 text-left">
+                <a href="Index#/Groups" class="btn btn-default">
+                    <span class="glyphicon glyphicon-triangle-left"></span>
+                    Back To Groups
+                </a>
+            </div>
+            <div class="col-sm-7">
+                <h2 class="text-left">Create Group</h2>
+            </div>
+        </div>
+        <div class="form-group form-inline">
+            <label class="control-label col-sm-2" for="name">Name:</label>
+            <input type="text" class="form-control col-sm-10" id="name" ng-model="nameValue" ng-keyup="hideSuccess();hideFailure();hideFailureEmptyName();" />
+        </div>
+        <div class="form-group form-inline">
+            <label class="control-label col-sm-2" for="mySelectId">Chose Course for this group:</label>
+            <select id="mySelectId" name="mySelect" ng-model="courseIdValue" class="form-control col-sm-10">
+                <option ng-repeat="x in names" value="{{ x.Id }}">{{ x.Name }}</option>
+            </select>
+        </div>
+        <div class="form-group form-inline">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" ng-click="submitButtonClick();">Submit</button>
+            </div>
+        </div>
+    </form>
+    <div class="alert alert-success" ng-show="showSuccess" ng-click="hideSuccess()">
+        <strong>Success!</strong> {{ successMessage }}
+    </div>
+    <div class="alert alert-danger" ng-show="showFailure" ng-click="hideFailure()">
+        <strong>Error!</strong> {{ failureMessage }}
+    </div>
+    <div class="alert alert-danger" ng-show="showFailureEmptyName" ng-click="hideFailureEmptyName()">
+        {{ failureEmptyNameMessage }}
+    </div>
+</div>

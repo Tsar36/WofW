@@ -1,0 +1,17 @@
+﻿<div class="container" ng-show="isPassedValueValid">
+    <div class="row">
+        <h4 class="col-md-2"><strong>User name:</strong></h4>
+        <h4 class="col-md-2">{{ userName }}</h4>
+    </div>
+    <div class="row">
+        <h4 class="col-md-2"><strong>Group Name:</strong></h4>
+        <h4 class="col-md-2">{{ group.Name }}</h4>
+        <h4 class="col-md-offset-4 col-md-4 text-right"><strong>Subscribed on course:</strong> {{ group.CourseName }}</h4>
+    </div>
+    <h4 class="text-center">Total progress: {{ course.Progress }}%</h4>
+    <div id="chartContainer" class="row" style="height: 300px; width: 100%;">
+    </div>
+</div>
+<div class="alert alert-danger" ng-show="!isPassedValueValid">    
+    The value passed is invalid, or you have no access to perform this operation!
+</div>

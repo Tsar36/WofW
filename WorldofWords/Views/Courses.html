@@ -1,0 +1,36 @@
+﻿<div class="container" align="center">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>My Courses</h2>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <table class="table">
+            <thead>
+            <tr class="blod-text">
+                <td>Name</td>
+                <td>WordSuites</td>
+                <td class="text-center">Details</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="course in enrollCourses" class="text-center">
+                <td class="text-left"><h4>{{course.Name}}</h4></td>
+                <td class="text-left">
+                    <span ng-repeat="wordsuite in course.WordSuites | top:topCount">
+                            {{wordsuite.Name}}
+                            <span ng-hide="$index == topCount-1 || $index == course.WordSuites.length-1">,&nbsp</span>
+                            <span ng-show="$index == topCount-1 && $index < course.WordSuites.length-1">...</span>
+                        </span>
+                </td>
+                <td class="width-glyphicons">
+                    <a href="Index#/CourseDetail/{{course.Id}}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

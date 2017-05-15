@@ -1,0 +1,35 @@
+﻿<div class="modal-header bg-primary">
+    <button class="modal-title close" ng-click="closeModal()">x</button>
+    <h3 class="modal-title">Share word suite</h3>
+</div>
+<div class="modal-body">
+    <div class="row body-content">
+        <input type="text"
+               class="form-control"
+               ng-change="showTeachers()"
+               ng-model="searchName"
+               placeholder="Search teacher by name" />
+    </div><br>
+    <table style="width:100%">
+         <tr ng-repeat="teacher in teachersToShow">
+            <td>{{teacher.Name}}</td>
+            <td width="7%"><input type="checkbox" checklist-model="teachersToShare.teachersId" checklist-value="teacher.Id" /></td>
+        </tr>
+    </table>
+    </div>
+<div class="modal-footer">
+    <div class="row text-center" ng-init="currentPage = 1; itemsPerPage = 5">
+        <pagination ng-show="teachersToShowCount > itemsPerPage - 1"
+                    boundary-links="true"
+                    total-items="teachersToShowCount"
+                    items-per-page="itemsPerPage"
+                    max-size="10"
+                    ng-model="currentPage"
+                    ng-change="showTeachers()"
+                    class="pagination-sm"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+        </pagination>
+    </div>
+    <br>
+        <button class="btn btn-primary" type="button" ng-click="submitModal()">Submit</button>
+    </div> 

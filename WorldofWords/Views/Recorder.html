@@ -1,0 +1,20 @@
+﻿<div>
+    <div class="btn-group btn-group" role="group" aria-label="..." style="width: 100%" ng-disabled="submit">
+        <button type="button" class="ng-class: recordButtonClass" ng-click="recordButtonPressed()" ng-disabled="isPlaying || submit"><span class="glyphicon glyphicon-record"></span></button>
+        <div class="ng-class: recordProgressBarClass">
+            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: {{recordProgressBarState | percentage}}"></div>
+            <div class="time-elapsed-record" ng-show="isRecording">{{currentTime  | seconds}} / {{totalTime | seconds}}</div>
+        </div>
+        <button type="button" class="ng-class: playButtonClass" ng-click="playButtonPressed()" ng-disabled="isRecording || !canBePlayed || submit"><span class="glyphicon glyphicon-play"></span></button>
+        <button type="button" class="btn btn-default" ng-click="stopButtonPressed()" ng-disabled="isRecording || !canBePlayed || submit"><span class="glyphicon glyphicon-stop"></span></button>
+        <div class="ng-class: playProgressBarClass">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{playProgressBarState | percentage}}">
+            </div>
+            <div class="time-elapsed" ng-show="isPlaying">{{currentPlayerTime | seconds}} / {{totalPlayerTime | seconds}}</div>
+        </div>
+        <button type="button" class="btn btn-default pull-right no-margin-left no-margin-right" ng-click="deleteButtonPressed()" ng-disabled="!canBeDeleted || submit"><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
+    <div class="top-margin-5"></div>
+    <input class="form-control" placeholder="Enter comment" ng-disabled="disableComment || submit" ng-model="recordDescription" style="width: 89%" maxlength="40">
+    <button type="button" class="ng-class: submitButtonClass" ng-click="submitButtonPressed()" ng-disabled="!canBeSubmited"><span class="glyphicon glyphicon-ok" style="color: {{tickColor}}"></span></button>
+</div>

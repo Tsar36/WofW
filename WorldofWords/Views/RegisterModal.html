@@ -1,0 +1,57 @@
+﻿<div id="registerModal" role="dialog">
+    <div align="center">
+        <div class="modal-header bg-primary">
+            <button class="close" type="button" ng-click="closeModal()">x</button>
+            <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                        <input type="text" class="form-control" placeholder="Name" ng-model="nameValue" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                        <input type="text" class="form-control" placeholder="Surname" ng-model="surnameValue" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></div>
+                        <select ng-model="languageId" class="btn btn-default dropdown-toggle btn-block">
+                            <option value="" selected disabled>Select Language ({{avaliableLanguagesCount}})</option>
+                            <option ng-repeat="language in languages" value="{{language.Id}}">{{language.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                        <input type="email" class="form-control" placeholder="E-mail" ng-model="emailValue" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                        <input type="password" class="form-control" placeholder="Password" ng-model="passwordValue" password-strength="passwordValue" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                        <input type="password" class="form-control" placeholder="Repeat password" ng-model="repeatPasswordValue" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="text-danger" ng-show="errorMessage.length" ng-style="strengthStyle">
+                        {{errorMessage}}
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-block btn-primary" ng-click="registerButtonClick()">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>

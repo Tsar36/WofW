@@ -1,0 +1,55 @@
+﻿<div class="container">
+    <audio id="errorAudio" src="Sounds/error.wav" autostart="false"></audio>
+    <audio id="rightAudio" src="Sounds/right_ans.wav" autostart="false"></audio>
+    <br />
+    <div class="row">
+        <div class="col-sm-6">
+            <h4 class="text-left">{{label}}</h4>
+        </div>
+        <div class="col-sm-6">
+            <h4 class="text-right">
+                <button class="btn btn-default">
+                    <span ng-class="{'glyphicon glyphicon-volume-off': !isSoundOn, 'glyphicon glyphicon-volume-up': isSoundOn}"
+                          ng-click="turnMusic()">
+                    </span>
+                </button>
+                <button class="btn btn-default" ng-click="goToCourses()">
+                    Stop tutor
+                </button>
+            </h4>
+        </div>
+    </div>
+    <br />
+    <div ng-hide="hideWords" class="row" align="center">
+        <div class="form-group">
+            <div ng-if="isRecord" class="input-group" align="center" style="width: 50%; margin:auto">
+                <!--<showrecords data="recordToShow" exists="true"></showrecords>-->
+                <tiny-player data="recordToShow.Content" comment="recordToShow.Description"></tiny-player>
+            </div>
+        </div>
+        <br />
+        <span class="col-md-6 text-center" ng-repeat="word in chosenWords">
+            <button id="answer" class={{classes[$index]}} ng-click="check($index);" ng-disabled="isCheck">
+                {{word.OriginalWord}}
+            </button>
+            <br ng-show="$index === 1" />
+            <br ng-show="$index === 1" />
+        </span>
+    </div>
+    <div>
+        <h2 align="center" class="col-md-10 text-center">{{messege}}</h2>
+    </div>
+</div>
+<script type="text/ng-template" id="smallWordSuite">
+    <div class="modal-header bg-primary">
+        <h3 class="modal-title">Small Wordsuite!</h3>
+    </div>
+    <div class="modal-body">
+        <div>Sorry, there are less then 4 words in this wordsuite.</div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="close()" class="btn btn-default">
+            Go to courses
+        </button>
+    </div>
+</script>

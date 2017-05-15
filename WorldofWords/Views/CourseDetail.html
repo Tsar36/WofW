@@ -1,0 +1,81 @@
+﻿<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="text-left">{{ course.Name }}</h4>
+        </div>
+        <div class="col-md-6">
+            <h4 class=" text-right">Total progress: {{ course.Progress }}%</h4>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr class="blod-text">
+                    <td>Name</td>
+                    <td>Progress</td>
+                    <td class="text-center">Quiz</td>
+                    <td class="text-center">Synonym quiz</td>
+                    <td class="text-center">Description quiz</td>
+                    <td class="text-center">Mix quiz</td>
+                    <td class="text-center">Picture quiz</td>
+                    <td class="text-center">Tutor</td>
+                    <td class="text-center">Image Tutor</td>
+                    <td class="text-center">Record Tutor</td>
+                    <td class="text-center">Words</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="wordsuite in course.WordSuites">
+                    <td>{{ wordsuite.Name }}</td>
+                    <td>{{ wordsuite.Progress }}%</td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/Quiz/{{ wordsuite.Id}}" ng-disabled="quizFlags[$index][quizIndexes.translationQuiz]">
+                            <span class=" glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/SynonymQuiz/{{ wordsuite.Id }}" ng-disabled="quizFlags[$index][quizIndexes.synonymQuiz]">
+                            <span class=" glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/QuizDesc/{{ wordsuite.Id }}" ng-disabled="quizFlags[$index][quizIndexes.descriptionQuiz]">
+                            <span class=" glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/MixQuiz/{{ wordsuite.Id }}" ng-disabled="quizFlags[$index][quizIndexes.mixQuiz]">
+                            <span class=" glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/PictureQuiz/{{ wordsuite.Id }}" ng-disabled="quizFlags[$index][quizIndexes.pictureQuiz]">
+                            <span class=" glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/Tutor/{{ wordsuite.Id }}">
+                            <span class=" glyphicon glyphicon-play"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/TutorPicture/{{ wordsuite.Id }}" >
+                            <span class=" glyphicon glyphicon-play"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/TutorRecord/{{ wordsuite.Id }}">
+                            <span class=" glyphicon glyphicon-play"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons text-center">
+                        <a class="btn btn-default" href="Index#/WordSuiteWords/{{ wordsuite.Id }}">
+                            <span class=" glyphicon glyphicon-list-alt"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

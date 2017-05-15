@@ -1,0 +1,193 @@
+﻿<!doctype html >
+<html ng-app="MyApp" xmlns="http://www.w3.org/1999/xhtml">
+<head ng-controller="IndexController">
+    <meta charset="utf-8">
+    <base href="/">
+    <title>World of Words</title>
+    <link rel="stylesheet" href="../Content/material-spinner.css"/>
+    <change-theme></change-theme>
+    <link href="../Content/Syte.less" rel="stylesheet" />
+
+    <script src="../dist/scripts-concat.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="It's just like WoW, with words instead of quests." />
+</head>
+<body ng-controller="IndexController" ng-class="getBodySidebarClass()">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <button id="sidebar-toggle"
+            type="button"
+            class="navbar-toggle"
+            ng-show="isLoggedIn()"
+            ng-click="toggleSidebar()">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-header" ng-click="onLogoClick()">
+        <a href=""><img class="icon-bar" src="/Images/logo.png" /></a>
+    </div>
+    <div class="container">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="isLoggedIn()">
+                        <span class="custom-dropdown">
+                            <select ng-model="defaultTheme" ng-options="theme.url as theme.name for theme in listOfThemes"></select>
+                        </span>
+                    </li>
+
+                    <li class="navbar-btn" ng-hide="isLoggedIn()">
+                        <div class="btn-group">
+                            <button class="btn btn-success" data-toggle="modal" ng-click="openLoginModal()"><span class="glyphicon glyphicon-log-in"></span>Login</button>
+                            <button class="btn btn-primary" ng-click="openRegisterModal()"><i class="glyphicon glyphicon-user"></i>Sign Up</button>
+                        </div>
+                </li>
+                    <li class="navbar-btn" ng-show="isLoggedIn() && isTeacher">
+                        <div class="btn-group" dropdown>
+                            <button class="btn btn-default" dropdown-toggle>
+                                Create <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="menuitem"><a href="/Index#/CreateCourse">Course</a></li>
+                                <li role="menuitem"><a href="Index#/AddGroup">Group</a></li>
+                                <li role="menuitem"><a href="Index#/CreateWordSuite">Word Suite</a></li>
+                            </ul>
+                        </div>
+                </li>
+                    <li class="navbar-btn" ng-show="isLoggedIn()">
+                        <div id="dropdownBtn" class="btn-group" dropdown>
+                            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                <strong><span ng-bind="userName" ng-model="getName"></span></strong> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/Index#/EditUserProfile">Edit Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/Index#/Courses">Courses</a></li>
+                                <li class="divider" ng-show="showWordSuitesIcon"></li>
+                                <li><a ng-hide="showWordSuitesIcon" href="/Index#/WordSuites">Word Suites</a></li>
+                                <li class="divider" ng-hide="showWordSuitesIcon"></li>
+                                <li>
+                                    <a href="Index#/Home" ng-click="logOut()">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                        Log Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--sidebar start-->
+<aside ng-show="isLoggedIn()">
+    <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <!--id="nav-accordion"-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            <section id="study-tools" ng-controller="CourseController" ng-show="isStudent">
+                <h3>Study Tools</h3>
+                <li class="sub-menu">
+                    <a id="cursorStyle">
+                        <i ng-hide="showIcon" class="glyphicon glyphicon-list"></i>
+                        <span>
+                            <i class="glyphicon glyphicon-list"></i>
+                            Courses
+                        </span>
+                        <i id="menuRightStyle" class="glyphicon glyphicon-menu-right" ng-show="showIcon"></i>
+                    </a>
+                    <ul class="sub">
+                        <li ng-repeat="course in enrollCourses"><a href="Index#/CourseDetail/{{course.Id}}">{{course.Name}}</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="Index#/PublicGroups">
+                        <span>Public Groups</span>
+                    </a>
+                </li>
+                <hr />
+            </section>
+            <section id="teaching-tools" ng-show="isTeacher">
+                <h3>Teaching Tools</h3>
+                <li class="sub-menu">
+                    <a id="cursorStyle">
+                        <i ng-hide="showIcon" class="glyphicon glyphicon-list"></i>
+                        <span>
+                            <i class="glyphicon glyphicon-list"></i>
+                            Manager
+                        </span>
+                        <i id="menuRightStyle" class="glyphicon glyphicon-menu-right" ng-show="showIcon"></i>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a href="Index#/GlobalDictionary">
+                                <span>Global Dictionary</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Index#/WordSuites">
+                                <span>Word Suites</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Index#/UserCourses">
+                                <span>Courses</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Index#/Groups">
+                                <span>Groups</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Index#/RequestsToSubscribe">
+                                <span>Subscription requests</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <hr />
+            </section>
+            <section id="admin-tools" ng-show="isAdmin">
+                <h3>Admin Tools</h3>
+                <li class="sub-menu">
+                    <a href="Index#/Users">
+                        <i class="glyphicon glyphicon-list"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="Index#/Languages">
+                        <i class="glyphicon glyphicon-signal"></i>
+                        <span>Languages</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="Index#/Tickets">
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        <span>Tickets</span> <span id="menuRightStyle" ng-show="unreadByAdmin" class="badge">{{unreadByAdmin}}</span>
+                    </a>
+                </li>
+                <hr />
+            </section>
+            <section id="your-stuff" ng-show="isLoggedIn()">
+                <h3>Your Stuff</h3>
+                <li class="sub-menu">
+                    <a href="Index#/EditUserProfile">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span>Profile </span> <span id="menuRightStyle" ng-show="unreadByUser" class="badge">{{unreadByUser}}</span>
+                    </a>
+                </li>
+            </section>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->
+<div class="container-fluid" id="content">
+    <div class="jumbotron jumbotron-no-paddings" id="myJum">
+        <div ng-view></div>
+    </div>
+</div>
+<script src="../Scripts/sidebar.js"></script>
+</body>
+</html>

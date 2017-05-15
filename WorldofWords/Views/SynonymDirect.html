@@ -1,0 +1,19 @@
+﻿<div ng-if="withId">
+    <span ng-repeat="word in data">
+        <button type="button" class="btn btn-success">
+            {{word.Value}} <span ng-if="!isReadOnly" ng-click="remove({index: $index})">
+                <img src="http://www.solium.ru/forum/images/icons/delete_icon.png" />
+            </span>
+        </button>
+    </span>
+</div>
+<div ng-if="!withId">
+    <span ng-repeat="word in data">
+        <button type="button" class="btn btn-success">
+            {{word}} <span ng-if="!isReadOnly" ng-click="remove({index: $index})">
+                <img src="http://www.solium.ru/forum/images/icons/delete_icon.png" />
+            </span>
+        </button>
+    </span>
+</div>
+

@@ -1,0 +1,16 @@
+﻿<div>
+    <p>Select language:</p>
+    <select ng-model='selectedLanguageId' ng-change='selectLanguage()'>
+        <option value='{{lang.Id}}' ng-repeat='lang in languages'>
+            {{lang.Name}}
+        </option>
+    </select>
+</div>
+<div>
+    <ul class="list-group">
+        <li ng-repeat='word in words' class='list-group-item'>{{word.Value}}</li>
+    </ul>
+</div>
+<a href="Index#/AddWord">
+<span class="glyphicon glyphicon-plus"><label class="font-normal">Add</label></span>
+</a>

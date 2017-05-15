@@ -1,0 +1,72 @@
+﻿<div ng-include="'Views/ConfirmModal.html'"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Requests to add into group</h2>
+        </div>
+    </div>
+    <div ng-hide="requests.length">
+        <div class="text-primary text-center">
+            <h3>There aren't any requests</h3>
+        </div>
+    </div>
+    <div ng-show="requests.length">
+        <div class="row">
+            <div class="col-md-3">
+                <input class="form-control" placeholder="Search by course" ng-change="showRequests()" ng-model="searchCourse" />
+            </div>
+            <div class="col-md-3">
+                <input class="form-control" placeholder="Search by group" ng-change="showRequests()" ng-model="searchGroup" />
+            </div>
+            <div class="col-md-3">
+                <input class="form-control" placeholder="Search by name" ng-change="showRequests()" ng-model="searchName" />
+            </div>
+            <div class="col-md-3 text-right">
+                <div class="input-group form-group">
+                    <span class="input-group-addon"><strong>Items per page:</strong></span>
+                    <input type="number" min="1" class="form-control" ng-model="itemsPerPage" ng-change="showRequests()">
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                    <tr class="blod-text text-center">
+                        <td class="text-left">Course</td>
+                        <td class ="text-left">Group</td>
+                        <td class="text-left">Student</td>
+                        <td>Accept</td>
+                        <td>Reject</td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="request in requestsToShow" class="text-center">
+                    <td class="text-left"><h4>{{request.CourseName}}</h4></td>
+                    <td class="text-left"><h4>{{request.GroupName}}</h4></td>
+                    <td class="text-left"><h4>{{request.UserName}}</h4></td>
+                    <td class="width-glyphicons">
+                        <button class="btn btn-default" ng-click="acceptRequest(request)">
+                            <span class="glyphicon glyphicon-ok-circle"></span>
+                        </button>
+                    </td>
+                    <td class="width-glyphicons">
+                        <button class="btn btn-default" ng-click="rejectRequest(request)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row text-center" ng-init="currentPage = 1; itemsPerPage = 5">
+            <pagination ng-show="requestsToShowCount > itemsPerPage"
+                        boundary-links="true"
+                        total-items="requestsToShowCount"
+                        items-per-page="itemsPerPage"
+                        max-size="10"
+                        ng-model="currentPage"
+                        ng-change="showRequests()"
+                        class="pagination-sm"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+            </pagination>
+        </div>
+    </div>
+</div>

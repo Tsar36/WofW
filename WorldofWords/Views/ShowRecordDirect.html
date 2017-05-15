@@ -1,0 +1,13 @@
+﻿<div ng-if="exists" align="center">
+    <div ng-repeat="rec in data">
+        <div class="record-brick">
+            <tiny-player data="rec.Content" use="wordEdit" comment="rec.Description"></tiny-player>
+            <span ng-click="remove()">
+                <img src="http://www.solium.ru/forum/images/icons/delete_icon.png" />
+            </span>
+        </div>
+    </div>
+</div>
+<div ng-if="!exists">
+    <recorder input="data"></recorder>
+</div>

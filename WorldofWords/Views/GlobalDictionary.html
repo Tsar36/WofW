@@ -1,0 +1,115 @@
+﻿<div ng-include="'Views/ConfirmModal.html'"></div>
+<div ng-include="'Views/MessageWithActionModal.html'"></div>
+<div ng-include="'Views/ImportWordTranslations.html'"></div>
+<div align="center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h2>Global Dictionary</h2>
+            </div>
+        </div>
+    </div>
+    <select class="form-control width-half" ng-options="lang.Name for lang  in originalLanguages"
+            ng-model='selectedOriginalLanguage'
+            ng-change='selectOriginalLanguage()'>
+        <option class="option-placeholder" ng-if="!isLanguageSelected" value="">From</option>
+    </select>
+    <select class="form-control width-half"
+            ng-show="isLanguageSelected"
+            ng-options="lang.Name for lang in translationLanguages"
+            ng-model='selectedTranslationLanguage'
+            ng-change='selectTranslationLanguage()'>
+        <option class="option-placeholder" ng-if="!isTranslationLanguageSelected" value="">To</option>
+    </select>
+    <div class="row width-half text-center" ng-show="isTranslationLanguageSelected">
+        <input type="text"
+               class="form-control"
+               ng-model="searchValue"
+               ng-change="changeDataToShow()"
+               placeholder="Search wordtranslations" />
+    </div>
+    <div isteven-multi-select
+         id="parts"
+         ng-if="isLanguageSelected"
+         input-model="partsOfSpeechForGD"
+         output-model="selectedPartsOfSpeech"
+         button-label="Name"
+         item-label="Name"
+         tick-property="selected"
+         on-item-click="changeDataToShow()"
+         on-select-all="changeDataToShow()"
+         on-select-none="changeDataToShow()"
+         on-reset="changeDataToShow()">
+    </div>
+</div>
+<table class="table table-hover width-half" align="center" ng-show="isTranslationLanguageSelected">
+    <thead>
+        <tr style="font-weight:bolder">
+            <td>Word</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat-start="word in toShow " ng-class="{ 'active': isSelected(word) }">
+            <td ng-click="selectWord(word)">{{ word.OriginalWord }}</td>
+            <td class="width-glyphicons">
+                <button class="btn btn-default" ng-click="editWord(word.OriginalWord)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </td>
+            <td class="width-glyphicons">
+                <button class="btn btn-default" ng-click="removeWord(word.OriginalWordId, word.TranslationWordId)">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                </button>
+            </td>
+        </tr>
+        <tr ng-repeat-end ng-if="isSelected(word)">
+            <td colspan="3">
+                <div>
+                    <div ng-if="fullWordInformation.Description">
+                        <span>Description:</span>
+                        <p ng-cloak>{{fullWordInformation.Description}}</p>
+                    </div>
+                    <div ng-if="fullWordInformation.Transcription">
+                        <span>Trancscription:</span>
+                        <p ng-cloak>{{fullWordInformation.Transcription}}</p>
+                    </div>
+                    <div ng-if="fullWordInformation.Translations">
+                        <span>Translations: {{fullWordInformation.Translations | splitByComa}}</span>
+
+                    </div>
+                    <div ng-if="fullWordInformation.Synonims">
+                        <span>Synonyms: {{fullWordInformation.Synonims | splitByComa}}</span>
+                    </div>
+                    <div ng-if="fullWordInformation.Tags">
+                        <span>Tags: {{fullWordInformation.Tags | splitByComa}}</span>
+
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="row" align="center" ng-show="wordsAmount > WORDS_ON_PAGE">
+    <pagination boundary-links="true"
+                total-items="wordsAmount"
+                items-per-page="WORDS_ON_PAGE"
+                max-size="5"
+                ng-model="selectedPage"
+                ng-change="changeDataToShow()"
+                class="pagination-sm"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+    </pagination>
+</div>
+<div class="row" align="center" ng-show="isTranslationLanguageSelected">
+    <div class="form-inline">
+        <button class="form-control" ng-click="open()">
+            Add
+        </button>
+        <button class="form-control" ng-click="openImportModal()">
+            Import
+        </button>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>My Courses</h2>
+        </div>
+    </div>
+    <div ng-hide="courses.length" align="center">
+        <div class="text-primary">
+            <h3>You haven't created any Courses</h3>
+        </div>
+    </div>
+    <div ng-show="courses.length" class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr class="blod-text text-center">
+                    <td class="text-left">Name</td>
+                    <td class="text-left">WordSuites</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in courses" class="text-center">
+                    <td class="text-left"><h4>{{course.Name}}</h4></td>
+                    <td class="text-left">
+                        <span ng-repeat="wordsuite in course.WordSuites | top:topCount">
+                            {{wordsuite.Name}}
+                            <span ng-hide="$index == topCount-1 || $index == course.WordSuites.length-1">,&nbsp</span>
+                            <span ng-show="$index == topCount-1 && $index < course.WordSuites.length-1">...</span>
+                        </span>
+                    </td>
+                    <td class="width-glyphicons">
+                        <a href="Index#/EditCourse/{{course.Id}}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons">
+                        <button class="btn btn-default" ng-click="confirmRemoving(course)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row text-center">
+        <a href="Index#/CreateCourse" class="btn btn-primary btn-lg margins-vertikal-sm">
+            Create Course
+        </a>
+    </div>
+</div>
+
+
+
+<script type="text/ng-template" id="errorModal">
+    <div class="modal-header bg-primary">
+        <h3 class="modal-title">Something happened!</h3>
+    </div>
+    <div class="modal-body">
+        {{data}}
+    </div>
+    <div class="modal-footer">
+        <button ng-click="close()" class="btn btn-default">
+            Ok
+        </button>
+    </div>
+</script>
+<script type="text/ng-template" id="confirmModal">
+    <div class="modal-header bg-primary">
+        <h3 class="modal-title">Delete course</h3>
+    </div>
+    <div class="modal-body">
+        Are you sure?
+    </div>
+    <div class="modal-footer">
+        <button ng-click="close()" class="btn btn-default">
+            Yes
+        </button>
+        <button ng-click="cancel()" class="btn btn-default">
+            No
+        </button>
+    </div>
+</script>

@@ -1,0 +1,297 @@
+/*
+Template Name: DASHGUM FREE - Bootstrap 3.2 Admin Theme
+Template Version: 1.0
+Author: Carlos Alvarez
+Website: http://blacktie.co
+Premium: http://www.gridgum.com
+*/
+
+/* Import fonts */
+@import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
+
+/*колір дл явкладених меню*/
+/* BASIC THEME CONFIGURATION */
+body {
+    color: #797979;
+    background: #f2f2f2;
+    font-family: 'Ruda', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 13px;
+}
+
+ul li {
+    list-style: none;
+}
+
+a, a:hover, a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+::selection {
+    background: #607386;
+    color: #fff;
+}
+
+::-moz-selection {
+    background: #607386;
+    color: #fff;
+}
+
+/* Bootstrap Modifications */
+.modal-header {
+    background: #3389CB;
+}
+
+.modal-title {
+    color: white;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #797979;
+}
+
+/*sidebar navigation*/
+
+#sidebar {
+    width: 210px;
+    height: 100%;
+    position: fixed;
+    background: #005596;
+}
+
+    #sidebar ul li {
+        position: relative;
+    }
+
+    #sidebar .sub-menu > .sub li a {
+        padding-left: 32px;
+    }
+
+    #sidebar .sub-menu > .sub li:last-child {
+        padding-bottom: 10px;
+    }
+
+    #sidebar section h3 {
+        padding-left: 25px;
+        font-size: 10px;
+    }
+
+    #sidebar hr {
+        border-color: #0083E7;
+        border-width: medium;
+    }
+    /*Ugliest selectors knows to man - blame bootstrap*/
+
+    #sidebar #navigation h3,
+    #sidebar #navigation a {
+        color: rgb(5, 195, 249);
+    }
+
+    #sidebar #study-tools h3,
+    #sidebar #study-tools a {
+        color: rgb(153, 255, 204);
+    }
+
+    #sidebar #teaching-tools h3,
+    #sidebar #teaching-tools a {
+        color: rgb(255, 255, 0);
+    }
+
+    #sidebar #admin-tools h3,
+    #sidebar #admin-tools a {
+        color: rgb(204, 255, 204);
+    }
+
+    #sidebar #your-stuff h3,
+    #sidebar #your-stuff a,
+    #sidebar #your-stuff i {
+        color: rgb(102, 255, 51);
+    }
+
+    #sidebar #your-stuff header {
+        color: rgb(135,160,185);
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    #sidebar #your-stuff .progress {
+        height: 5px;
+        clear: both;
+    }
+
+/*LEFT NAVIGATION ICON*/
+.dcjq-icon {
+    height: 17px;
+    width: 17px;
+    display: inline-block;
+    /*background: url("../img/nav-expand.png") no-repeat top;*/
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+/*---*/
+
+ul.sidebar-menu, ul.sidebar-menu li ul.sub {
+    margin: -2px 0 0;
+    padding: 0;
+}
+
+ul.sidebar-menu {
+    /*margin-top: 75px;*/
+}
+/*тло випадаючого списка*/
+    ul.sidebar-menu li ul.sub li {
+        background: #0083E7;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+        ul.sidebar-menu li ul.sub li:last-child {
+            border-radius: 0 0 4px 4px;
+            -webkit-border-radius: 0 0 4px 4px;
+        }
+
+        ul.sidebar-menu li ul.sub li a {
+            font-size: 12px;
+            padding: 6px 0;
+            line-height: 35px;
+            height: 35px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            color: #aeb2b7;
+        }
+
+            ul.sidebar-menu li ul.sub li a:hover {
+                color: white;
+                background: transparent;
+            }
+
+
+    ul.sidebar-menu li {
+        margin-bottom: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+        ul.sidebar-menu li.sub-menu {
+            line-height: 15px;
+        }
+
+        ul.sidebar-menu li a span {
+            display: inline-block;
+        }
+
+        ul.sidebar-menu li a {
+            /*color: #aeb2b7;*/
+            text-decoration: none;
+            display: block;
+            padding: 15px 0 15px 10px;
+            font-size: 12px;
+            outline: none;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+            ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+                background: #3399FF;
+                display: block;
+                -webkit-transition: all 0.3s ease;
+                -moz-transition: all 0.3s ease;
+                -o-transition: all 0.3s ease;
+                -ms-transition: all 0.3s ease;
+                transition: all 0.3s ease;
+            }
+
+
+            ul.sidebar-menu li a i {
+                font-size: 15px;
+                padding-right: 6px;
+            }
+
+            ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
+            }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    /* Safari and Chrome */
+}
+
+/*--sidebar toggle---*/
+
+#sidebar-toggle {
+    display: block;
+    border-color: transparent;
+    float: left;
+}
+
+.sidebar-closed #content {
+    margin-left: 0;
+}
+
+.sidebar-minimized #content {
+    margin-left: 60px;
+}
+
+.sidebar-minimized #sidebar {
+    width: 60px;
+    overflow: visible;
+}
+
+    .sidebar-minimized #sidebar section h3,
+    .sidebar-minimized #sidebar section span,
+    .sidebar-minimized #sidebar section ul li {
+        display: none;
+    }
+
+label {
+    font-weight: 400;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+@media (max-width: 600px) {
+    #sidebar-toggle {
+        display: none;
+    }
+
+    #content {
+        margin-left: 60px;
+    }
+
+    #sidebar {
+        width: 60px;
+        overflow: visible;
+    }
+
+        #sidebar section h3,
+        #sidebar section span,
+        #sidebar section ul li {
+            display: none;
+        }
+
+        #sidebar section ul {
+            left: 100%;
+            top: 0;
+            position: absolute;
+            width: 210px;
+        }
+}
+

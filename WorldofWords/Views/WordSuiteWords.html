@@ -1,0 +1,77 @@
+﻿<div ng-include="'Views/ConfirmModal.html'"></div>
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-6 text-left">
+            <h3>{{wordSuite.Name}}</h3>
+        </div>
+        <div class="col-sm-4 text-right">
+            <h3 class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Print
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="PdfWords()">words</a></li>
+                    <li><a ng-click="PdfTask()">task</a></li>
+                </ul>
+            </h3>
+        </div>
+        <div class="col-sm-1 text-right">
+            <h3>
+                <span ng-include="'Views/AddWordTranslationsModal.html'"></span>
+                <button class="btn btn-default" ng-click="openAddWordTranslationModal()">
+                    Add WordTranslation
+                </button>
+            </h3>
+        </div>
+    </div>
+    <div class="panel panel-default row">
+        <table class="table">
+            <thead>
+                <tr class="blod-text">
+                    <td>
+                        Word
+                        <span>&nbsp</span>
+                        <span ng-click="sort(1,'OriginalWord')" class="glyphicon glyphicon-sort-by-alphabet"></span>
+                        <span>&nbsp</span>
+                        <span ng-click="sort(0, 'OriginalWord')" class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+                    </td>
+                    <td>
+                        Translation
+                    </td>
+                    <td class="text-center">
+                        Progress
+                        <span>&nbsp</span>
+                        <span ng-click="sort(1, 'Progress')" class="glyphicon glyphicon-sort-by-order"></span>
+                        <span>&nbsp</span>
+                        <span ng-click="sort(0, 'Progress')" class="glyphicon glyphicon-sort-by-order-alt"></span>
+                    </td>
+                    <td class="text-center">Listen</td>
+                    <td class="text-center">Remove</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="word in wordSuite.WordTranslations" ng-class="{'learned-word': word.Progress == wordSuite.Threshold}">
+                    <td>{{ word.OriginalWord }}</td>
+                    <td>{{ word.TranslationWord }}</td>
+                    <td class="text-center">{{ word.Progress }}/{{wordSuite.Threshold}}</td>
+                    <td class="text-center">
+                        <button class="btn-default btn" ng-click="listen(word.OriginalWord)">
+                            <span class="glyphicon glyphicon-volume-up"></span>
+                        </button>
+                        <tiny-player data="records[$index].Content" id="{{word.OriginalWordId}}" use="wordsInWordSuite" comment="records[$index].Description"></tiny-player>
+                    </td>
+                    <td class="text-center">
+                        <span class="glyphicon glyphicon-remove-sign margins-vertikal-md"
+                              ng-hide="word.IsStudentWord"
+                              data-tooltip="You can't remove teacher's Word Translations"
+                              data-tooltip-enable="!word.IsStudentWord">
+                        </span>
+                        <button class="btn-default btn" ng-click="remove($index)" ng-show="word.IsStudentWord">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

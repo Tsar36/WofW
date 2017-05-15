@@ -1,0 +1,12 @@
+﻿<script type="text/ng-template" id="messageWithActionModal">
+    <div class="modal-header" align="center" ng-class="{'bg-primary': success, 'bg-danger': !success}">
+        <h3 class="modal-title">{{titleText}}</h3>
+    </div>
+    <div class="modal-body text-center">
+        <strong>{{bodyText}}</strong>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-block" ng-class="{'btn-primary': success, 'btn-danger': !success}" ng-click="ok()">Ok</button>
+        <button class="btn btn-block" ng-class="{'btn-primary': success, 'btn-danger': !success}" ng-click="action()">{{actionButtonText}}</button>
+    </div>
+</script>

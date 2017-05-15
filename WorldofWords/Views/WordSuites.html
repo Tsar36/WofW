@@ -1,0 +1,89 @@
+﻿<div ng-include="'Views/ConfirmModal.html'"></div>
+<div ng-include="'Views/MessageModal.html'"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>My Word Suites</h2>
+        </div>      
+    </div>
+    <div ng-hide="wordSuitesToShow.length">
+        <div class="text-primary text-center">
+            <h3>You haven't created any Word Suites</h3>
+        </div>
+    </div>
+    <div ng-show="wordSuitesToShow.length">
+        <div class="row">
+            <div class="col-md-2">
+                <input class="form-control" placeholder="Search by name" ng-change="showWordSuites()" ng-model="searchName" />
+            </div>
+            <div class="col-md-offset-5 col-md-5 text-right">
+                <div class="form-inline margins-vertikal-sm">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><strong>Order by:</strong></span>
+                        <select class="form-control input-addon-sm" ng-model="orderBy" ng-change="showWordSuites()" ng-options="s for s in ['Date', 'Name']"></select>
+                    </div>
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><strong>Items per page:</strong></span>
+                        <input type="number" min="1" class="form-control input-addon-sm" ng-model="itemsPerPage" ng-change="showWordSuites()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                    <tr class="blod-text text-center">
+                        <td class="text-left">Name</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td>Threshold</td>
+                        <td>Quiz Response Time</td>
+                        <td>Share</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="ws in wordSuitesToShow" class="text-center">
+                    <td class="text-left"><h4>{{ws.Name}}</h4></td>
+                    <td><h4>{{ws.Language}}</h4></td>
+                    <td><h4>{{ws.TranslationLanguageName}}</h4></td>
+                    <td><h4>{{ws.Threshold}}</h4></td>
+                    <td><h4>{{ws.QuizResponseTime}}</h4></td>
+                    <td class="width-glyphicons">
+                        <button class="btn btn-default" ng-click="wordSuiteShare($index)"> 
+                            <span class="glyphicon glyphicon-share"></span>
+                        </button>
+                    </td>
+                    <td class="width-glyphicons">
+                        <a href="Index#/EditWordSuite/{{ws.Id}}" class=" btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons">
+                        <button class="btn btn-default" ng-click="removeWordSuite($index)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row text-center" ng-init="currentPage = 1; itemsPerPage = 5; orderBy = 'Date'">
+            <pagination ng-show="wordSuitesToShowCount > itemsPerPage"
+                        boundary-links="true"
+                        total-items="wordSuitesToShowCount"
+                        items-per-page="itemsPerPage"
+                        max-size="10"
+                        ng-model="currentPage"
+                        ng-change="showWordSuites()"
+                        class="pagination-sm"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+            </pagination>
+        </div>
+    </div>
+    <div class="row text-center">
+        <a href="Index#/CreateWordSuite" class="btn btn-primary btn-lg margins-vertikal-sm">
+            Create WordSuite
+        </a>
+    </div>
+</div>

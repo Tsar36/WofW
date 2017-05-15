@@ -1,0 +1,121 @@
+﻿<!--<link rel="stylesheet" type="text/css" href="../Content/sticky-footer.css" />-->
+<div class="panel-primary">
+    <div class="panel-body">
+        <table class="table table-responsive">
+            <thead class="text-center">
+                <tr class="text-center">
+                    <th class="text-center">Subject</th>
+                    <th class="text-center" ng-show="isAdmin" >Author</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Created</th>
+                    <th class="text-center">Last Modified</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="ticket in ticketsToShow | orderBy: '-OpenDate'">
+                <tr ng-class="{
+                        'active': (!ticket.IsReadByUser  && !isAdmin) || (isAdmin && !ticket.IsReadByAdmin),                        
+                    }">
+                    <td><a>{{ticket.Subject}}</a></td>
+                    <td ng-show="isAdmin">{{ticket.UserEmail}}</td>
+                    <td>
+                        <h4>
+                            <span ng-class="{
+                          'label label-success': ticket.ReviewStatus === 0,
+                          'label label-warning': ticket.ReviewStatus === 1,
+                          'label label-danger': ticket.ReviewStatus === 2,
+                          'label label-default': ticket.ReviewStatus === 3 }">{{ticket.ReviewStatusString}}</span>
+                        </h4>
+                    </td>
+                    <td>{{ticket.OpenDate | date:'medium'}}</td>
+                    <td>{{ticket.CloseDate | date:'medium'}}</td>
+                    <td>
+                        <div>
+                            <button class="btn btn-default" type="button" ng-click="toggleDetail($index, ticket, true)" ng-show="isAdmin"><span class="glyphicon glyphicon-eye-open"></span></button>
+                            <button class="btn btn-default" type="button" ng-click="toggleDetail($index, ticket, false)" ng-show="!isAdmin"><span class="glyphicon glyphicon-eye-open"></span></button>
+                            <button class="btn btn-default" type="button" ng-click="removeTicket(ticket.TicketId, ticket.OwnerId)" ng-show="isAdmin"><span class="glyphicon glyphicon-trash"></span></button>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr ng-show="activePosition == $index && isAdmin"  >
+                    <td colspan="6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4>{{ticket.Subject}}</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <strong>From: </strong><span class="btn btn-default">{{ticket.UserName}} ({{ticket.UserEmail}})</span>
+                                        </div>
+                                        <div>
+                                            <strong>Ticket content:</strong>
+                                            <p>{{ticket.Description}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <strong>Review status:</strong>
+                                            <select name="state" class="form-control" ng-model="ticket.ReviewStatus">
+                                                <option value="1">In Progress</option>
+                                                <option value="2">Rejected</option>
+                                                <option value="3">Done</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Your comment:</strong>
+                                    <input class="form-control" type="text" placeholder="Type your comment here" ng-model="ticket.Comment" />
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="text-center">
+                                    <button class="btn btn-default" type="button" ng-click="updateTicket(ticket)" 
+                                            ng-disabled="ticket.ReviewStatusString === 'Closed' || ticket.ReviewStatusString === 'Rejected'">Save and Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="activePosition == $index && !isAdmin" >
+                    <td colspan="6">
+                        <div class="panel panel-primary text-left">
+                            <div class="panel-heading">
+                                <h4>{{ticket.Subject}}</h4>
+                            </div>
+                            <div class="panel-body margins">
+                                <div class="row">
+                                    <div>
+                                        <strong>You: </strong>
+                                        <span>{{ticket.Description}}</span>
+                                    </div>
+                                    <div ng-hide="!ticket.Comment">
+                                        <strong>Administrator: </strong>
+                                        <span>{{ticket.Comment}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <div align="center">
+            <pagination ng-show="ticketsToShowCount > itemsPerPage"
+                        boundary-links="true"
+                        total-items="ticketsToShowCount"
+                        items-per-page="itemsPerPage"
+                        max-size="10"
+                        ng-model="currentPage"
+                        ng-change="showTickets()"
+                        class="pagination-sm"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+            </pagination>
+        </div>
+    </div>
+</div>

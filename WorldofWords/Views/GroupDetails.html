@@ -1,0 +1,87 @@
+﻿<div ng-include="'Views/ConfirmModal.html'"></div>
+<div ng-include="'Views/MessageModal.html'"></div>
+<div class="container" ng-show="isPassedValueValid">
+    <div class="row">
+        <ul class="nav nav-pills">
+            <li role="navigation"><a href="#/Groups">Groups</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <h3 class="col-md-4 text-left blod-text">{{ group.Name }}</h3>
+        <h3 class="col-md-offset-4 col-md-4"><strong>Subscribed on course:</strong> {{ group.CourseName }}</h3>
+    </div>
+    <div class="row" ng-show="enrollmentsWithProgresses.length">
+        <div class="col-md-2">
+            <input class="form-control" placeholder="Search by name" ng-change="showEnrollments()" ng-model="searchName" />
+        </div>
+        <div class="col-md-offset-5 col-md-5 text-right">
+            <div class="form-inline margins-vertikal-sm">
+                <div class="input-group form-group">
+                    <span class="input-group-addon"><strong>Items per page:</strong></span>
+                    <input type="number" min="1" class="form-control input-addon-sm" ng-model="itemsPerPage" ng-change="showEnrollments()">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="enrollmentsWithProgresses.length" class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr style="font-weight:bolder">
+                    <td>User Name</td>
+                    <td>Registration Date</td>
+                    <td>Course Progress</td>
+                    <td>Details</td>
+                    <td>Chart</td>
+                    <td>Unenroll</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="enWithPr in enrollmentsWithProgressesToShow" href="Index#/Groups/{{ group.Id }}/{{ enWithPr.Enrollment.User.Id }}">
+                    <td>{{ enWithPr.Enrollment.User.Name }}</td>
+                    <td>{{ enWithPr.Enrollment.Date }}</td>
+                    <td>
+                        {{ enWithPr.Progress }}%
+                    </td>
+                    <td class="width-glyphicons">
+                        <a class="btn btn-default" href="Index#/Groups/{{ group.Id }}/{{ enWithPr.Enrollment.User.Id }}">
+                            <span class="glyphicon glyphicon-list"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons">
+                        <a class="btn btn-default" href="Index#/Groups/{{ group.Id }}/{{ enWithPr.Enrollment.User.Id }}/chart">
+                            <span class="glyphicon glyphicon-tasks"></span>
+                        </a>
+                    </td>
+                    <td class="width-glyphicons">
+                        <button class="btn btn-default" ng-click="deleteEnrollmentById(enWithPr.Enrollment.Id)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row text-center">
+        <pagination ng-show="enrollmentsWithProgressesToShowCount > itemsPerPage"
+                    boundary-links="true"
+                    total-items="enrollmentsWithProgressesToShowCount"
+                    items-per-page="itemsPerPage"
+                    max-size="10"
+                    ng-model="currentPage"
+                    ng-change="showEnrollments()"
+                    class="pagination-sm"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+        </pagination>
+    </div>
+    <div class="row">
+        <h4 class="col-md-6 text-left">You can add users to this group using 'Select' button:</h4>
+        <div class="col-md-offset-4 col-md-2 text-left" ng-dropdown-multiselect options="users" selected-model="userModels" extra-settings="userConfig"></div>
+    </div>
+    <br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-default center-block" ng-click="submitButtonClick()">Submit Changes</button>
+    </div>
+</div>
+<div class="alert alert-danger" ng-show="!isPassedValueValid">
+    The value passed is invalid, or you have no access to perform this operation!
+</div>

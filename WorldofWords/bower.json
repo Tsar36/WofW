@@ -1,0 +1,13 @@
+{
+  "name": "worldofwords",
+  "version": "0.8.1",
+  "description": "lv-150.net project",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

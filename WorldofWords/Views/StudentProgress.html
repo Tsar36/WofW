@@ -1,0 +1,45 @@
+﻿<div class="container" ng-show="isPassedValueValid">
+    <div class="row">
+        <ul class="nav nav-pills">
+            <li role="navigation"><a href="#/Groups">Groups</a></li>
+            <li role="navigation"><a href="#/Groups/{{group.Id}}">/</a></li>
+            <li role="navigation"><a href="#/Groups/{{group.Id}}">{{group.Name}}</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <h4 class="col-md-2"><strong>User name:</strong></h4>
+        <h4 class="col-md-2">{{ userName }}</h4>
+    </div>
+    <div class="row">
+        <h4 class="col-md-2"><strong>Group Name:</strong></h4>
+        <h4 class="col-md-2">{{ group.Name }}</h4>
+        <h4 class="col-md-offset-4 col-md-4 text-right"><strong>Subscribed on course:</strong> {{ group.CourseName }}</h4>
+    </div>
+    <h4 class="text-center">Total progress: {{ course.Progress }}%</h4>
+    <div class="panel">
+        <table class="table width-half" align="center">
+            <thead>
+                <tr class="blod-text text-left">
+                    <td>Word Suite Name</td>
+                    <td>Progress</td>
+                    <td>Student Word Suite</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-left" ng-repeat="wordsuite in course.WordSuites">
+                    <td>{{ wordsuite.Name }}</td>
+                    <td>{{ wordsuite.Progress }}%</td>
+                    <td class="width-glyphicons">
+                        <a class="btn btn-default" href="Index#/ExtendedWordSuite/{{group.Id}}/{{wordsuite.Id}}">
+                            <span class="glyphicon glyphicon-list"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="alert alert-danger" ng-show="!isPassedValueValid">
+    The value passed is invalid, or you have no access to perform this operation!
+</div>
+

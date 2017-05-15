@@ -1,0 +1,72 @@
+﻿<div ng-include="'Views/ConfirmModal.html'"></div>
+<div ng-include="'Views/MessageWithActionModal.html'"></div>
+<div ng-include="'Views/ImportWordTranslations.html'"></div>
+<div align="center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h2>Global Dictionary</h2>
+            </div>
+        </div>
+    </div> 
+    <select class="form-control width-half" ng-model='selectedLanguageId' ng-change='selectLanguage()'>
+        <option class="option-placeholder" value="0" selected>Language</option>
+        <option value='{{lang.Id}}' ng-repeat='lang in languages'>
+            {{lang.Name}}
+        </option>
+    </select>
+    <div class="row width-half text-center" ng-show="isLanguageSelected">
+        <input type="text"
+               class="form-control"
+               ng-model="searchValue"
+               ng-change="changeDataToShow()"
+               placeholder="Search wordtranslations" /> 
+    </div>
+</div>
+<table class="table table-striped width-half" align="center" ng-show="isLanguageSelected">
+    <thead>
+        <tr style="font-weight:bolder">
+            <td>Word</td>
+            <td>Translation</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="word in toShow">
+            <td>{{ word.OriginalWord }}</td>
+            <td>{{ word.TranslationWord }}, {{ word.OriginalWord.Description }},{{ word.OriginalWord.Transcription }} </td>
+            <td class="width-glyphicons">
+                <button class="btn btn-default" ng-click="editWord(word.OriginalWord, word.OriginalWord.Description, word.OriginalWord.Transcription, word.TranslationWord)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </td>
+            <td class="width-glyphicons">
+                <button class="btn btn-default" ng-click="removeWord(word.OriginalWordId, word.TranslationWordId)">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="row" align="center" ng-show="wordsAmount > WORDS_ON_PAGE">
+    <pagination boundary-links="true"
+                total-items="wordsAmount"
+                items-per-page="WORDS_ON_PAGE"
+                max-size="5"
+                ng-model="selectedPage"
+                ng-change="changeDataToShow()"
+                class="pagination-sm"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">
+    </pagination>
+</div>
+<div class="row" align="center" ng-show="isLanguageSelected">
+    <div class="form-inline">
+        <button class="form-control" ng-click="open()">
+            Add new word
+        </button>
+        <button class="form-control" ng-click="openImportModal()">
+            Import new words
+        </button>
+    </div>
+</div>

@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{975A4B51-32DE-4B6E-B6A0-C2A0FD23141C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WorldofWords</RootNamespace>
+    <AssemblyName>WorldofWords</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>c709f444</NuGetPackageImportStamp>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <DeployEncryptKey>Encryption password is used only if any deployment setting is marked as secure</DeployEncryptKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="dotless.Core, Version=1.5.0.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotless.1.5.0\lib\dotless.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Contrib.WebApi">
+      <HintPath>..\packages\Elmah.Contrib.WebApi.1.0.9.0\lib\net45\Elmah.Contrib.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc">
+      <HintPath>..\packages\Unity.Mvc.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.core.interfaces, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NUnit.VisualStudio.TestAdapter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4cb40d35494691ac, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.3.1.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.3.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGridMail, Version=6.1.0.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.6.1.0\lib\SendGridMail.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="Unity.WebApi, Version=5.1.0.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.WebAPI.5.1\lib\net45\Unity.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\HttpMessageHandler.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\SignalRUnityDependencyResolver.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\RecordController.cs" />
+    <Compile Include="Hubs\ConnectedUsersContainer.cs" />
+    <Compile Include="Hubs\TicketHubAuthorization.cs" />
+    <Compile Include="Hubs\UserIdProvider.cs" />
+    <Compile Include="App_Start\WowAuthorization.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\EditUserProfileController.cs" />
+    <Compile Include="Controllers\EnrollmentController.cs" />
+    <Compile Include="Controllers\GlobalDictionaryController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
+    <Compile Include="Controllers\TeacherListController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Controllers\TrainingWordSuiteController.cs" />
+    <Compile Include="Controllers\UsersListController.cs" />
+    <Compile Include="Controllers\WordsController.cs" />
+    <Compile Include="Controllers\WordSuiteController.cs" />
+    <Compile Include="Controllers\WordsuitePdfController.cs" />
+    <Compile Include="Controllers\WordTranslationController.cs" />
+    <Compile Include="ExceptionLogging\TraceExceptionLogger.cs" />
+    <Compile Include="Filters\ModelValidationFilterAttribute.cs" />
+    <Compile Include="Hubs\TicketNotificationHub.cs" />
+    <Compile Include="Migrations\201601171401354_FirstMigration.cs" />
+    <Compile Include="Migrations\201601171401354_FirstMigration.designer.cs">
+      <DependentUpon>201601171401354_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountBindingModels.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utils\FileActionResult.cs" />
+    <Compile Include="Utils\IPdfGenerator.cs" />
+    <Compile Include="Utils\WordSuitePdfGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\angular-toastr.css" />
+    <Content Include="Content\angular-toastr.min.css" />
+    <Content Include="Content\Arrows\left-arrow.png" />
+    <Content Include="Content\Arrows\left-disabled-arrow.png" />
+    <Content Include="Content\Arrows\left-hover-arrow.png" />
+    <Content Include="Content\Arrows\right-arrow.png" />
+    <Content Include="Content\Arrows\right-disabled-arrow.png" />
+    <Content Include="Content\Arrows\right-hover-arrow.png" />
+    <Content Include="Content\dash-aside.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\drop-down-blue-theme.css" />
+    <Content Include="Content\drop-down-dark-theme.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\isteven-multi-select.css" />
+    <Content Include="Content\keyboard.png" />
+    <Content Include="Content\loading-indicator.css" />
+    <Content Include="Content\material-spinner.css" />
+    <Content Include="Content\metro-bootstrap-blue-theme.min.css" />
+    <Content Include="Content\metro-bootstrap-dark-theme.min.css" />
+    <Content Include="Content\metro-bootstrap.min.css" />
+    <Content Include="Content\recorder.css" />
+    <Content Include="Content\PictureQuizStyles.css" />
+    <Content Include="Content\sidebar-blue-theme.css" />
+    <Content Include="Content\sidebar-dark-theme.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\sticky-footer.css" />
+    <Content Include="Content\Syte.css">
+      <DependentUpon>Syte.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Syte.min.css">
+      <DependentUpon>Syte.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="dist\prod_build.min.css" />
+    <Content Include="dist\prod_build.min.js" />
+    <Content Include="dist\scripts-concat.js" />
+    <Content Include="dist\styles-concat.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Gruntfile.js" />
+    <Content Include="Images\distance-learning2.jpg" />
+    <Content Include="Images\distance-learning3.jpg" />
+    <Content Include="Images\distance-learning4.jpg" />
+    <Content Include="Images\Icons-01.png" />
+    <Content Include="Images\Icons-02.png" />
+    <Content Include="Images\Icons-03.png" />
+    <Content Include="Images\Icons-04.png" />
+    <Content Include="Images\Icons-05.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\softserve.png" />
+    <Content Include="Images\twittertile.png" />
+    <Content Include="karma.conf.js" />
+    <Content Include="keyboard.png" />
+    <Content Include="Scripts\angular\angular-toastr.js" />
+    <Content Include="Scripts\angular\angular-toastr.min.js" />
+    <Content Include="Scripts\angular\angular-toastr.tpls.js" />
+    <Content Include="Scripts\angular\angular-toastr.tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\angular\angular-route.js" />
+    <Content Include="Scripts\angular\angular-route.min.js" />
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\angular.min.js.map" />
+    <Content Include="Scripts\angular\angular-route.min.js.map" />
+    <Content Include="Content\Syte.less" />
+    <Content Include="bower.json" />
+    <Content Include="package.json" />
+    <Content Include="Content\Syte.css.map">
+      <DependentUpon>Syte.css</DependentUpon>
+    </Content>
+    <Content Include="dist\prod_build.min.js.map" />
+    <Content Include="dist\scripts-concat.js.map" />
+    <Content Include="dist\styles-concat.css.map" />
+    <Content Include=".jshintrc" />
+    <None Include=".bin\git.cmd" />
+    <None Include=".bin\node.cmd" />
+    <None Include=".bin\npm.cmd" />
+    <None Include="Properties\PublishProfiles\wow30-12-2015.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery\jquery-2.1.4.intellisense.js" />
+    <Content Include="Icon.png" />
+    <Content Include="Scripts\angular\angular-mocks.js" />
+    <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\Controllers\CreateWordTranslationController.js" />
+    <Content Include="Scripts\app\Controllers\EditWordController.js" />
+    <Content Include="Scripts\app\Controllers\ExtendedWordSuiteController.js" />
+    <Content Include="Scripts\app\Controllers\GroupDetailsController.js" />
+    <Content Include="Scripts\app\Controllers\ModalStartQuizController.js" />
+    <Content Include="Scripts\app\Controllers\PictureController.js" />
+    <Content Include="Scripts\app\Controllers\PictureQuizController.js" />
+    <Content Include="Scripts\app\Controllers\PublicGroupsController.js" />
+    <Content Include="Scripts\app\Controllers\QuizControllerDesc.js" />
+    <Content Include="Scripts\app\Controllers\MixQuizController.js" />
+    <Content Include="Scripts\app\Controllers\RecorderController.js" />
+    <Content Include="Scripts\app\Controllers\SynonymQuizController.js" />
+    <Content Include="Scripts\app\Controllers\RequestsToSubscribe.js" />
+    <Content Include="Scripts\app\Controllers\SendRequestController.js" />
+    <Content Include="Scripts\app\Controllers\StudentProgressChartController.js" />
+    <Content Include="Scripts\app\Controllers\GlobalDictionaryController.js" />
+    <Content Include="Scripts\app\Controllers\AddWordTranslationsModalController.js" />
+    <Content Include="Scripts\app\Controllers\MessageWithActionModalController.js" />
+    <Content Include="Scripts\app\Controllers\StudentProgressController.js" />
+    <Content Include="Scripts\app\Controllers\TeacherManagerController.js" />
+    <Content Include="Scripts\app\Controllers\ChangePasswordController.js" />
+    <Content Include="Scripts\app\Controllers\ConfirmModalController.js" />
+    <Content Include="Scripts\app\Controllers\CreateCourseController.js" />
+    <Content Include="Scripts\app\Controllers\EditCourseController.js" />
+    <Content Include="Scripts\app\Controllers\MessageModalController.js" />
+    <Content Include="Scripts\app\Controllers\TicketController.js" />
+    <Content Include="Scripts\app\Controllers\ticketsTableController.js" />
+    <Content Include="Scripts\app\Controllers\TinyPlayerController.js" />
+    <Content Include="Scripts\app\Controllers\UnassignedModalController.js" />
+    <Content Include="Scripts\app\Controllers\ResetPasswordController.js" />
+    <Content Include="Scripts\app\Controllers\UnauthorizeModalController.js" />
+    <Content Include="Scripts\app\Controllers\EditUserProfileController.js" />
+    <Content Include="Scripts\app\Controllers\AddGroupController.js" />
+    <Content Include="Scripts\app\Controllers\CourseController.js" />
+    <Content Include="Scripts\app\Controllers\ImportWordTranslationsController.js" />
+    <Content Include="Scripts\app\Controllers\CourseDetailController.js" />
+    <Content Include="Scripts\app\Controllers\GroupController.js" />
+    <Content Include="Scripts\app\Controllers\IndexController.js" />
+    <Content Include="Scripts\app\Controllers\LanguageController.js" />
+    <Content Include="Scripts\app\Controllers\LoginController.js" />
+    <Content Include="Scripts\app\Controllers\UserCoursesController.js" />
+    <Content Include="Scripts\app\Controllers\WordSuiteCollectionController.js" />
+    <Content Include="Scripts\app\Controllers\QuizController.js" />
+    <Content Include="Scripts\app\Controllers\RegisterController.js" />
+    <Content Include="Scripts\app\Controllers\EmailConfirmedController.js" />
+    <Content Include="Scripts\app\Controllers\UsersConfiguringController.js" />
+    <Content Include="Scripts\app\Controllers\WordSuitesController.js" />
+    <Content Include="Scripts\app\Controllers\WordSuiteCreateController.js" />
+    <Content Include="Scripts\app\Controllers\WordSuiteEditController.js" />
+    <Content Include="Scripts\app\Controllers\WordSuiteProgressController.js" />
+    <Content Include="Scripts\app\Controllers\WordSuiteShareController.js" />
+    <Content Include="Scripts\app\Controllers\WordSuiteWordsController.js" />
+    <Content Include="Scripts\app\Directives\ChangeTheme.js" />
+    <Content Include="Scripts\app\Directives\draganddrop.js" />
+    <Content Include="Scripts\app\Directives\passwordStrength.js" />
+    <Content Include="Scripts\app\Directives\pesDirective.js" />
+    <Content Include="Scripts\app\Directives\RecorderDirective.js" />
+    <Content Include="Scripts\app\Directives\showWordsDirect.js" />
+    <Content Include="Scripts\app\Directives\ticketTable.js" />
+    <Content Include="Scripts\app\Directives\TinyPlayerDirective.js" />
+    <Content Include="Scripts\app\Directives\ValidationDirective.js" />
+    <Content Include="Scripts\app\Directives\PasswordStrengthDirective.js" />
+    <Content Include="Scripts\app\Directives\wordsuiteProgress.js" />
+    <Content Include="Scripts\app\Filters\PartOfSpeechFilter.js" />
+    <Content Include="Scripts\app\Filters\PercentageFilter.js" />
+    <Content Include="Scripts\app\Filters\SplitFilter.js" />
+    <Content Include="Scripts\app\Filters\TimeFilter.js" />
+    <Content Include="Scripts\app\Filters\TopFilter.js" />
+    <Content Include="Scripts\app\Services\ConstService.js" />
+    <Content Include="Scripts\app\Services\ChangePasswordService.js" />
+    <Content Include="Scripts\app\Services\HttpRequest.js" />
+    <Content Include="Scripts\app\Services\EditUserProfileService.js" />
+    <Content Include="Scripts\app\Services\CourseService.js" />
+    <Content Include="Scripts\app\Services\EnrollmentService.js" />
+    <Content Include="Scripts\app\Services\GroupService.js" />
+    <Content Include="Scripts\app\Services\HubService.js" />
+    <Content Include="Scripts\app\Services\IndexService.js" />
+    <Content Include="Scripts\app\Services\LanguageService.js" />
+    <Content Include="Scripts\app\Services\LoginService.js" />
+    <Content Include="Scripts\app\Services\ModalService.js" />
+    <Content Include="Scripts\app\Services\MyPageService.js" />
+    <Content Include="Scripts\app\Services\PictureQuizService.js" />
+    <Content Include="Scripts\app\Services\PictureService.js" />
+    <Content Include="Scripts\app\Services\QuizService.js" />
+    <Content Include="Scripts\app\Services\RecorderService.js" />
+    <Content Include="Scripts\app\Services\RecordsService.js" />
+    <Content Include="Scripts\app\Services\RegisterService.js" />
+    <Content Include="Scripts\app\Controllers\WordsController.js" />
+    <Content Include="Scripts\app\Services\ResetPasswordService.js" />
+    <Content Include="Scripts\app\Services\ShareScopeService.js" />
+    <Content Include="Scripts\app\Services\TagService.js" />
+    <Content Include="Scripts\app\Services\TicketService.js" />
+    <Content Include="Scripts\app\Services\TinyPlayerService.js" />
+    <Content Include="Scripts\app\Services\WordsService.js" />
+    <Content Include="Scripts\app\Services\UserService.js" />
+    <Content Include="Scripts\app\Services\WordSuiteService.js" />
+    <Content Include="Scripts\app\Services\TutorService.js" />
+    <Content Include="Scripts\app\Controllers\TutorController.js" />
+    <Content Include="Scripts\app\Services\WordTranslationService.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\isteven-multi-select.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\libs\angular-virtual-keyboard.css" />
+    <Content Include="Scripts\libs\angular-virtual-keyboard.js" />
+    <Content Include="Scripts\libs\canvasjs.min.js" />
+    <Content Include="Scripts\libs\keyboard.css" />
+    <Content Include="Scripts\libs\keyboard.js" />
+    <Content Include="Scripts\libs\sha512.js" />
+    <Content Include="Scripts\libs\Timer.js" />
+    <Content Include="Scripts\app\Directives\angularjs-dropdown-multiselect.js" />
+    <Content Include="Scripts\jquery\jquery.scrollTo.min.js" />
+    <Content Include="Scripts\app\Directives\angularjs-dropdown-multiselect.js" />
+    <Content Include="Scripts\libs\lodash.min.js" />
+    <Content Include="Scripts\libs\bootstrap.js" />
+    <Content Include="Scripts\libs\bootstrap.min.js" />
+    <Content Include="Scripts\jquery\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery\jquery-2.1.4.min.map" />
+    <None Include="Scripts\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery\jquery.validate.js" />
+    <Content Include="Scripts\jquery\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libs\modernizr-2.8.3.js" />
+    <Content Include="Scripts\libs\npm.js" />
+    <Content Include="Scripts\libs\respond.js" />
+    <Content Include="Scripts\libs\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\libs\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\libs\respond.min.js" />
+    <Content Include="Scripts\libs\vki-deadkeys.js" />
+    <Content Include="Scripts\libs\vki-layouts.js" />
+    <Content Include="Scripts\nicescroll.js" />
+    <Content Include="Scripts\sidebar.js" />
+    <Content Include="Scripts\libs\moment-with-locales.js" />
+    <Content Include="Scripts\libs\moment-with-locales.min.js" />
+    <Content Include="Scripts\libs\moment.js" />
+    <Content Include="Scripts\libs\moment.min.js" />
+    <Content Include="Sounds\error.wav" />
+    <Content Include="Sounds\right_ans.wav" />
+    <Content Include="TestScripts\AddGroupControllerTests.js" />
+    <Content Include="TestScripts\ConfirmModalControllerTests.js" />
+    <Content Include="TestScripts\CreateCourseControllerTests.js" />
+    <Content Include="TestScripts\CreateWordTranslationControllerTests.js" />
+    <Content Include="TestScripts\EmailConfirmedControllerTests.js" />
+    <Content Include="TestScripts\LoginControllerTests.js" />
+    <Content Include="TestScripts\MessageModalControllerTest.js" />
+    <Content Include="TestScripts\ModalControllerTests.js" />
+    <Content Include="TestScripts\PartOfSpeechFilterTest.js" />
+    <Content Include="TestScripts\SendRequestControllerTests.js" />
+    <Content Include="TestScripts\UnassignedModalControllerTest.js" />
+    <Content Include="TestScripts\UnauthorizeModalControllerTest.js" />
+    <Content Include="Views\EditWord.html" />
+    <Content Include="Views\ExtendedWordSuite.html" />
+    <Content Include="Views\GroupDetails.html" />
+    <Content Include="Views\MessageWithActionModal.html" />
+    <Content Include="Views\PasswordChanged.html" />
+    <Content Include="Views\PictureQuiz.html" />
+    <Content Include="Views\PublicGroups.html" />
+    <Content Include="Views\QuizDesc.html" />
+    <Content Include="Views\QuizMix.html" />
+    <Content Include="Views\Recorder.html" />
+    <Content Include="Views\ShowRecordDirect.html" />
+    <Content Include="Views\SynonymQuiz.html" />
+    <Content Include="Views\RequestsToSubscribe.html" />
+    <Content Include="Views\SendRequest.html" />
+    <Content Include="Views\StudentProgress.html" />
+    <Content Include="Views\StudentProgressChart.html" />
+    <Content Include="Views\SynonymDirect.html" />
+    <Content Include="Views\TeacherManager.html" />
+    <Content Include="Views\AddWordTranslationsModal.html" />
+    <Content Include="Views\ConfirmModal.html" />
+    <Content Include="Views\CreateCourse.html" />
+    <Content Include="Views\ChangePassword.html" />
+    <Content Include="Views\EditCourse.html" />
+    <Content Include="Views\PdfDownload.tpl.html" />
+    <Content Include="Views\Tickets.html" />
+    <Content Include="Views\TicketTable.html" />
+    <Content Include="Views\TutorPicture.html" />
+    <Content Include="Views\TinyPlayerView.html" />
+    <Content Include="Views\TutorRecord.html" />
+    <Content Include="Views\UnassignedModal.html" />
+    <Content Include="Views\GlobalDictionary.html" />
+    <Content Include="Views\PasswordRecovered.html" />
+    <Content Include="Views\RegisterModal.html" />
+    <Content Include="Views\CreateWordTranslation.html" />
+    <Content Include="Views\UnauthorizeModal.html" />
+    <Content Include="Views\LoginModal.html" />
+    <Content Include="Views\AddGroup.html" />
+    <Content Include="Views\AddWord.html" />
+    <Content Include="Views\CourseDetail.html" />
+    <Content Include="Views\Courses.html" />
+    <Content Include="Views\CreateWordSuite.html" />
+    <Content Include="Views\EditUserProfile.html" />
+    <Content Include="Views\EditWordSuite.html" />
+    <Content Include="Views\ImportWordTranslations.html" />
+    <Content Include="Views\EmailConfirmed.html" />
+    <Content Include="Views\ForgotPasswordModal.html" />
+    <Content Include="Views\Groups.html" />
+    <Content Include="Views\Home.html" />
+    <Content Include="Views\Index.html" />
+    <Content Include="Views\Languages.html" />
+    <Content Include="Views\EmailSentPage.html" />
+    <Content Include="Views\MyPage.html" />
+    <Content Include="Views\Quiz.html" />
+    <Content Include="Views\Tutor.html" />
+    <Content Include="Views\UserCourses.html" />
+    <Content Include="Views\Users.html" />
+    <Content Include="Views\MessageModal.html" />
+    <Content Include="Views\Words.html" />
+    <Content Include="Views\WordSuiteProgress.html" />
+    <Content Include="Views\WordSuites.html" />
+    <Content Include="Views\WordSuiteShare.html" />
+    <Content Include="Views\WordSuiteWords.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\libs\_references.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="Views\Users\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WorldOfWords.API.Models\WorldOfWords.API.Models.csproj">
+      <Project>{27f86fcd-b263-4b3d-a6ee-af10653ee5d1}</Project>
+      <Name>WorldOfWords.API.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldOfWords.Domain.Models\WorldOfWords.Domain.Models.csproj">
+      <Project>{0d0f89c2-6d9a-4cd5-be02-6eeedef7c7a1}</Project>
+      <Name>WorldOfWords.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldOfWords.Domain.Services\WorldOfWords.Domain.Services.csproj">
+      <Project>{bee0bdd1-ea68-4520-a5ab-26cb3c34f001}</Project>
+      <Name>WorldOfWords.Domain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldOfWords.Infrastructure.Data.EF\WorldOfWords.Infrastructure.Data.EF.csproj">
+      <Project>{1f9627c7-001b-47cf-8f45-caaf14efb26f}</Project>
+      <Name>WorldOfWords.Infrastructure.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldOfWords.Validation\WorldOfWords.Validation.csproj">
+      <Project>{192c8a17-d226-42c2-a5e0-63790b4b046a}</Project>
+      <Name>WorldOfWords.Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601171401354_FirstMigration.resx">
+      <DependentUpon>201601171401354_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3138</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3138/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <!--<Target Name="NpmBuild" BeforeTargets="Build">
+    <Exec Command=".bin\npm install" />
+  </Target>
+  <Target Name="BowerInstall" AfterTargets="NpmBuild">
+    <Exec Command=".bin\bower install" />
+  </Target>
+  <Target Name="GruntBuild" AfterTargets="BowerInstall">
+    <Exec Command=".bin\grunt" />
+    </Target>-->
+</Project>

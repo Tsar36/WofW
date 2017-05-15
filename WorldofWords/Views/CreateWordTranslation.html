@@ -1,0 +1,35 @@
+﻿<div class="modal-header">
+    <button class="modal-title close" ng-click="close()">x</button>
+    <h3 class="modal-title">Create WordTranslation</h3>
+</div>
+<div class="modal-body">
+    <div class="input-group">
+        <input type="text"
+               class="form-control"
+               ng-model="selectedWord"
+               data-typeahead="word as word.Value for word in searchWords($viewValue)"
+               data-typeahead-no-results="not found"
+               data-typeahead-min-length="2"
+               data-typeahead-wait-ms="400"
+               placeholder="Search word" />
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="openForWord()">Add word</button>
+        </span>
+        <input type="text"
+               class="form-control"
+               ng-model="selectedTranslation"
+               data-typeahead="translation as translation.Value for translation in searchTranslations($viewValue)"
+               data-typeahead-min-length="2"
+               data-typeahead-wait-ms="400"
+               placeholder="Search translation" />
+    </div>
+</div>
+<div class="modal-footer">
+    <span class="input-group-btn">
+        <button class="btn btn-primary" ng-click="ManipulateData()">
+            Add WordTranslation
+        </button>
+    </span>
+
+</div>
+

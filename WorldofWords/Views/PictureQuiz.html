@@ -1,0 +1,114 @@
+﻿<div class="container text-center">
+    <br />
+    <div class="row">
+        <div class="col-sm-6">
+            <h4 class="text-left">{{label}}</h4>
+        </div>
+        <div class="col-sm-6" ng-show="!isTimeOut">
+            <h4 class="text-right"><b>{{time| milisecondToDateTime | date:'HH:mm:ss'}}</b></h4>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div id="childArrowLeft" class="col-sm-1">
+            <button class="btn btn-default"
+                    id="left-arrow"
+                    ng-click="previousPage()"
+                    ng-disabled="currentPage < 2"
+                    ng-show="!isTimeOut || isChecked"></button>
+        </div>
+        <div id="parentQuiz" class="col-sm-10">
+            <div class="" ng-repeat="image in images" on-finish-render="ngRepeatFinished">
+                <div class="row form-group">
+                    <i class="col-sm-4">
+                        <img src={{image}} width="{{picture_width}}" height="{{picture_height}}" alt="Alternate Text" />
+                    </i>
+                    <span class="col-sm-8 magrin-top-50perc">
+                        <input class="form-control keyboardInput"
+                               ng-disabled="isChecked"
+                               type="text"
+                               ng-class="{check: isChecked}"
+                               ng-model="typedWords[getCurrentIndex($index)].TranslationWord"
+                               style="width: 50%; float: left" />
+                        <i class="col-sm-1" style="margin-top: 2%; float: left">
+                            <span ng-show="isSubmitSuccessful"
+                                  ng-class="{'glyphicon glyphicon-ok': answer[getCurrentIndex($index)].Result,
+                                         'glyphicon glyphicon-remove': !answer[getCurrentIndex($index)].Result}">
+                            </span>
+                        </i>
+                        <i class="col-sm-3" style="margin-top: 1.5%">
+                            <span ng-show="isSubmitSuccessful && !answer[getCurrentIndex($index)].Result">
+                                {{answer[getCurrentIndex($index)].OriginalWord}}
+                            </span>
+                        </i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="childArrowRight" class="col-sm-1">
+            <button class="btn btn-default"
+                    id="right-arrow"
+                    ng-click="nextPage()"
+                    ng-disabled="currentPage >= (totalItems/itemsPerPage)"
+                    ng-show="!isTimeOut || isChecked"></button>
+        </div>
+    </div>
+    <div align="center" ng-show="itemsPerPage">
+        <button ng-click="ConfirmSubmit();" class="btn btn-success" ng-hide="isChecked">Submit</button>
+        <button ng-click="goToCourses()" class="btn btn-success" ng-show="isChecked">OK</button>
+    </div>
+
+<script type="text/ng-template" id="errorModal">
+    <div class="modal-header bg-primary">
+        <h3 class="modal-title">Something happened!</h3>
+    </div>
+    <div class="modal-body">
+        {{data}}
+    </div>
+    <div class="modal-footer">
+        <button ng-click="yes()" class="btn btn-default">
+            Go to courses
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="startQuiz">
+    <div class="modal-header bg-primary">
+        <h3 class="modal-title">Start Quiz!</h3>
+    </div>
+    <div class="modal-body">
+        <div>Input all words.</div>
+        <div>You have {{data|TimeWithWords }}.</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-modal-confirm" ng-click="yes()">Start</button>
+        <button class="btn btn-primary btn-modal-confirm" ng-click="no()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="Result">
+    <div class="modal-header bg-primary">
+        <h3 class="modal-title">Save result!</h3>
+    </div>
+    <div class="modal-body">
+        <div>{{data}}</div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="yes()" class="btn btn-default">
+            OK
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="Confirmation">
+    <div class="modal-header bg-primary">
+        <h3 class="modal-title">End Quiz!</h3>
+    </div>
+    <div class="modal-body">
+        <div>Are you sure?</div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="yes()" class="btn btn-default">Yes</button>
+        <button ng-click="no()" class="btn btn-default">No</button>
+    </div>
+</script>

@@ -1,0 +1,17 @@
+﻿<div class="container">
+    <br />
+    <div class="row">
+        <h3 class="col-md-4 text-left blod-text">{{title}}</h3>
+    </div>
+    <div class="row text-right">
+        <div class="form-inline margins-vertikal-sm">
+            <div class="input-group form-group">
+                <span class="input-group-addon"><strong>Filter:</strong></span>
+                <input type="text" class="form-control" placeholder="Users search" ng-change="showTickets()" ng-model="searchName" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <ticket-table data="ticketsToShow" is-admin="true" />
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SendGrid.SmtpApi</id>
+    <version>1.3.1</version>
+    <title>SendGrid SMTP API</title>
+    <authors>Brandon West</authors>
+    <owners>Brandon West</owners>
+    <licenseUrl>https://github.com/sendgrid/smtpapi-csharp/blob/master/MIT.LICENSE</licenseUrl>
+    <projectUrl>https://github.com/sendgrid/smtpapi-csharp</projectUrl>
+    <iconUrl>https://pbs.twimg.com/profile_images/580745391617880064/rrsj746a.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Easily build SendGrid SMTP API headers to use with any SMTP library.</description>
+    <summary>Easily build SendGrid SMTP API headers to use with any SMTP library.</summary>
+    <releaseNotes>### Added
+- travis-ci build
+- SetAsmGroupId() method for suppression groups (ASM)
+- SetSendAt() and SetSendEachAt() methods for scheduled sends
+- SetIpPool() method for using IP Pools
+
+### Changed
+- HeaderSettingsNode.AddArray now takes a collection of type object rather
+  than string</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>smtpapi sendgrid email smtp</tags>
+  </metadata>
+</package>

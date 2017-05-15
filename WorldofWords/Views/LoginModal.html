@@ -1,0 +1,36 @@
+﻿<div id="loginModal" role="dialog">
+    <div align="center">
+        <div class="modal-header bg-primary">
+            <button class="close" type="button" ng-click="closeModal()">x</button>
+            <h4 class="modal-title" id="myModalLabel">Login</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form" ng-submit="loginButtonClick()">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                        <input type="email" class="form-control" placeholder="E-mail" ng-model="email" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                        <input type="password" class="form-control" placeholder="Password" ng-model="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a id="fplink" ng-click="openForgotPasswordModal()" class="text-primary">Forgot Password?</a>
+                </div>
+                <div class="form-group">
+                    <label class="text-danger" ng-show="errorMessage.length">
+                        {{errorMessage}}
+                    </label>
+                </div>
+                <input name="loginButton" type="submit" class="btn btn-block btn-primary" value="Sign In" ng-hide="loading"/>
+                <svg class="spinner" width="35px" height="35px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg" ng-show="loading">
+                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                </svg>
+            </form>
+        </div>
+    </div>
+</div>

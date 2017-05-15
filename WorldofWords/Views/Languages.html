@@ -1,0 +1,41 @@
+﻿<div ng-include="'Views/MessageModal.html'"></div>
+<div ng-include="'Views/ConfirmModal.html'"></div>
+<link rel="stylesheet" href="../Content/metro-bootstrap.min.css"/>
+<header class="text-center">
+    <h2>Languages</h2>
+</header>
+<br>
+<div align="center">
+    <form class="input-group width-quarter">
+        <div class="input-group-addon"><span class="lang-sm lang-lbl-full" lang="en-gb"></span></div>
+        <select class="form-control"
+                ng-options="language.Name for language in languageList"
+                ng-model="selectedLanguage"
+                ng-change="checkIfAlreadyExists()">
+            <option value="" selected disabled>Select Language</option>
+        </select>
+        <span class="input-group-btn">
+            <button class="btn btn-default btn-block" ng-click="addLanguage()" ng-disabled="canAdd === false">Add</button>
+        </span>
+    </form>
+    <div class="alert alert-danger width-quarter" ng-show="alertMessage.length">
+        <span class="tile-large"><strong>{{selectedLanguage.Name}} already exists</strong></span>
+    </div>
+</div>
+<div align="center">
+    <table class="table table-striped width-quarter" ng-show="languages.length">
+        <tr>
+            <td><strong>Name</strong></td>
+            <td align="right"><strong>Delete</strong></td>
+        </tr>
+        <tr ng-repeat="language in languages">
+            <td><h4>{{language.Name}}</h4></td>
+            <td align="right">
+                <button class="btn btn-default nomargins" ng-click="removeLanguage($index)">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+

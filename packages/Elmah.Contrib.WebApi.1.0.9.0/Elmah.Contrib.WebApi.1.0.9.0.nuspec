@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Elmah.Contrib.WebApi</id>
+    <version>1.0.9.0</version>
+    <title />
+    <authors>Richard Dingwall</authors>
+    <owners>Richard Dingwall</owners>
+    <licenseUrl>https://raw.github.com/rdingwall/elmah-contrib-webapi/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/rdingwall/elmah-contrib-webapi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ASP.NET Web API exception filter for logging errors to ELMAH. Ported from Fabian Vilers' Elmah.Contrib.Mvc.</description>
+    <releaseNotes />
+    <copyright />
+    <language>en-US</language>
+    <tags>WebAPI ELMAH</tags>
+    <dependencies>
+      <dependency id="elmah.corelibrary" version="1.2.2" />
+      <dependency id="Microsoft.AspNet.WebApi.Core" version="5.1.1" />
+    </dependencies>
+  </metadata>
+</package>
